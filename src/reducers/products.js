@@ -18,6 +18,7 @@ export default (state = productsReducerDefaultState, action) => {
               }
             : product
       );
+
     default:
       return state;
   }
