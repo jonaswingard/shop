@@ -20,7 +20,7 @@ beforeEach(done => {
     .then(() => done());
 });
 
-test.only('should add product to database and store', done => {
+test('should add product to database and store', done => {
   const store = createMockStore(defaultAuthState);
   const productData = {
     name: 'Product Added By Test',
