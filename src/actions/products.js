@@ -6,6 +6,12 @@ export const addProduct = product => ({
   product
 });
 
+export const SET_PRODUCTS = 'SET_PRODUCTS';
+export const setProducts = products => ({
+  type: SET_PRODUCTS,
+  products
+});
+
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 export const removeProduct = ({ id } = {}) => ({
   type: REMOVE_PRODUCT,
@@ -37,6 +43,41 @@ export const startAddProduct = (productData = {}) => {
             ...product
           })
         );
+      });
+  };
+};
+
+export const startRemoveProduct = ({ id } = {}) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+
+    return database
+      .ref(`users/${uid}/products`)
+      .remove()
+      .then(() => {
+        dispatch(removeProduct({ id }));
+      });
+  };
+};
+
+export const startSetProducts = () => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+
+    return database
+      .ref(`users/${uid}/products`)
+      .once('value')
+      .then(snapshot => {
+        const products = [];
+
+        snapshot.forEach(childSnapshot => {
+          products.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+          });
+        });
+
+        dispatch(setProducts(products));
       });
   };
 };
