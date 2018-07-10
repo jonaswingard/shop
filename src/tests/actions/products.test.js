@@ -4,8 +4,10 @@ import thunk from 'redux-thunk';
 import {
   startAddProduct,
   startRemoveProduct,
+  startEditProduct,
   startSetProducts,
   ADD_PRODUCT,
+  EDIT_PRODUCT,
   REMOVE_PRODUCT,
   SET_PRODUCTS
 } from '../../actions/products';
@@ -72,6 +74,29 @@ test('should add product to the database and store', done => {
     })
     .then(snapshot => {
       expect(snapshot.val()).toEqual(productData);
+      done();
+    });
+});
+
+test('should edit a product from the database', done => {
+  const store = createMockStore(defaultAuthState);
+  const id = products[0].id;
+  const updates = { name: 'edited by test' };
+
+  store
+    .dispatch(startEditProduct(id, updates))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: EDIT_PRODUCT,
+        id,
+        updates
+      });
+
+      return database.ref(`users/${uid}/products/${id}`).once('value');
+    })
+    .then(snapshot => {
+      expect(snapshot.val().name).toBe(updates.name);
       done();
     });
 });

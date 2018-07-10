@@ -47,6 +47,18 @@ export const startAddProduct = (productData = {}) => {
   };
 };
 
+export const startEditProduct = (id, updates) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database
+      .ref(`users/${uid}/products/${id}`)
+      .update(updates)
+      .then(() => {
+        dispatch(editProduct(id, updates));
+      });
+  };
+};
+
 export const startRemoveProduct = ({ id } = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
