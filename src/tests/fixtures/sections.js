@@ -1,17 +1,17 @@
 export default [
   {
-    id: 1,
+    id: '1',
     name: 'test section 1',
-    sort: 10
+    sortId: '10'
   },
   {
-    id: 2,
+    id: '2',
     name: 'test section 2',
-    sort: 20
+    sortId: '20'
   },
   {
-    id: 1,
+    id: '3',
     name: 'test section 3',
-    sort: 30
+    sortId: '30'
   }
 ];
