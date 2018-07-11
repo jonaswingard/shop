@@ -20,8 +20,8 @@ const createMockStore = configureMockStore([thunk]);
 
 beforeEach(done => {
   const productsData = {};
-  products.forEach(({ id, name, sectionId }) => {
-    productsData[id] = { name, sectionId };
+  products.forEach(({ id, name, sectionId, inShoppingList, inCart }) => {
+    productsData[id] = { name, sectionId, inShoppingList, inCart };
   });
   database
     .ref(`users/${uid}/products`)
