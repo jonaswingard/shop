@@ -1,5 +1,9 @@
-import selectProducts from '../../selectors/products';
+import {
+  selectProducts,
+  selectProductsDetailed
+} from '../../selectors/products';
 import products from '../fixtures/products';
+import sections from '../fixtures/sections';
 
 test('should filter by products in shopping-list', () => {
   const filters = {
@@ -15,4 +19,9 @@ test('should filter by products in cart', () => {
   };
   const result = selectProducts(products, filters);
   expect(result).toEqual([products[0]]);
+});
+
+test('should get products with the sectionname', () => {
+  const result = selectProductsDetailed(products, sections)[0];
+  expect(result).toEqual({ ...products[0], section: sections[0] });
 });

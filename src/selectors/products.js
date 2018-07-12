@@ -1,4 +1,4 @@
-export default (products, { inShoppingList, inCart }) =>
+export const selectProducts = (products, { inShoppingList, inCart }) =>
   products.filter(product => {
     const inShoppingListMatch = inShoppingList
       ? product.inShoppingList === inShoppingList
@@ -7,3 +7,12 @@ export default (products, { inShoppingList, inCart }) =>
 
     return inShoppingListMatch && inCartMatch;
   });
+
+export const selectProductsDetailed = (products, sections) => {
+  return products
+    .map(product => ({
+      ...product,
+      section: sections.find(section => section.id === product.sectionId)
+    }))
+    .sort((a, b) => a.name - b.name);
+};

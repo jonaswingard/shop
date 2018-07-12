@@ -1,6 +1,6 @@
 import {
   selectSections,
-  selectSectionsWithProducts
+  selectSectionsDetailed
 } from '../../selectors/sections';
 import sections from '../fixtures/sections';
 import products from '../fixtures/products';
@@ -11,7 +11,7 @@ test('should get a list of sorted sections', () => {
 });
 
 test('should get a list of sections with products as children', () => {
-  const result = selectSectionsWithProducts(sections, products);
+  const result = selectSectionsDetailed(sections, products)[0];
   expect(result).toEqual({
     name: sections[1].name,
     products: [products[1]]
