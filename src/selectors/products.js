@@ -1,5 +1,5 @@
-export default (products, { inShoppingList, inCart }) => {
-  return products.filter(product => {
+export default (products, { inShoppingList, inCart }) =>
+  products.filter(product => {
     const inShoppingListMatch = inShoppingList
       ? product.inShoppingList === inShoppingList
       : true;
@@ -7,4 +7,3 @@ export default (products, { inShoppingList, inCart }) => {
 
     return inShoppingListMatch && inCartMatch;
   });
-};
