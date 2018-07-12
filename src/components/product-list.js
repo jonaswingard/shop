@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import selectProducts from '../selectors/products';
+import { selectProducts } from '../selectors/products';
 
 export const ProductList = props => (
   <div>
@@ -12,6 +12,12 @@ export const ProductList = props => (
   </div>
 );
 
-const mapStateToProps = state => ({ products: selectProducts(state.products) });
+const filters = {
+  inShoppingList: true
+};
+
+const mapStateToProps = state => ({
+  products: selectProducts(state.products, filters)
+});
 
 export default connect(mapStateToProps)(ProductList);

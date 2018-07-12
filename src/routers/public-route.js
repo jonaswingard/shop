@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import Header from '../components/header';
 
 export const PublicRoute = ({
   isAuthenticated,
@@ -14,7 +13,6 @@ export const PublicRoute = ({
         <Redirect to="/shop" />
       ) : (
         <div>
-          <Header />
           <Component {...props} />
         </div>
       )
