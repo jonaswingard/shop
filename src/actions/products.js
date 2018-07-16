@@ -64,7 +64,7 @@ export const startRemoveProduct = ({ id } = {}) => {
     const uid = getState().auth.uid;
 
     return database
-      .ref(`users/${uid}/products`)
+      .ref(`users/${uid}/products/${id}`)
       .remove()
       .then(() => {
         dispatch(removeProduct({ id }));

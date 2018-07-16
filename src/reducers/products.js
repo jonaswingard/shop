@@ -1,4 +1,9 @@
-import { ADD_PRODUCT, REMOVE_PRODUCT, EDIT_PRODUCT } from '../actions/products';
+import {
+  ADD_PRODUCT,
+  REMOVE_PRODUCT,
+  EDIT_PRODUCT,
+  SET_PRODUCTS
+} from '../actions/products';
 
 const productsReducerDefaultState = [];
 
@@ -18,6 +23,8 @@ export default (state = productsReducerDefaultState, action) => {
               }
             : product
       );
+    case SET_PRODUCTS:
+      return action.products;
 
     default:
       return state;

@@ -4,9 +4,13 @@ import { Provider } from 'react-redux';
 import 'normalize.css/normalize.css';
 
 import './styles/styles.scss';
-import AppRouter from './routers/app-router';
+import AppRouter, { history } from './routers/app-router';
 import configureStore from './store/configureStore';
-import { addProduct, startAddProduct } from './actions/products';
+import {
+  addProduct,
+  startAddProduct,
+  startSetProducts
+} from './actions/products';
 import { login, logout } from './actions/auth';
 import { firebase } from './firebase/firebase';
 
@@ -32,10 +36,16 @@ firebase.auth().onAuthStateChanged(user => {
   if (user) {
     store.dispatch(login(user.uid));
     console.log('you are logged in');
-    renderApp();
+    store.dispatch(startSetProducts()).then(() => {
+      renderApp();
+      if (history.location.pathname === '/') {
+        history.push('/shop');
+      }
+    });
   } else {
     store.dispatch(logout());
     renderApp();
+    history.push('/');
   }
 });
 

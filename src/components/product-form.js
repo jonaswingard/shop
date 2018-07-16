@@ -17,10 +17,16 @@ export default class ProductForm extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit({
-      name: this.state.name
-    });
+    const product =
+      this.props.product && this.props.product.id
+        ? { id: this.props.product.id, name: this.state.name }
+        : { name: this.state.name };
+    this.props.onSubmit(product);
     this.setState(() => ({ error: '', name: '' }));
+  };
+
+  onCancel = () => {
+    this.props.onCancel();
   };
 
   render() {
@@ -30,7 +36,9 @@ export default class ProductForm extends React.Component {
         <form onSubmit={this.onSubmit}>
           <input value={this.state.name} onChange={this.onNameChange} />
           <button>Save</button>
-          <button type="button">Cancel</button>
+          <button type="button" onClick={this.onCancel}>
+            Cancel
+          </button>
         </form>
       </div>
     );
