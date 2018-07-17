@@ -1,4 +1,9 @@
-import { ADD_SECTION, EDIT_SECTION, REMOVE_SECTION } from '../actions/sections';
+import {
+  ADD_SECTION,
+  EDIT_SECTION,
+  REMOVE_SECTION,
+  SET_SECTIONS
+} from '../actions/sections';
 
 const sectionsReducerDefaultState = [];
 
@@ -18,6 +23,8 @@ export default (state = sectionsReducerDefaultState, action) => {
               }
             : section
       );
+    case SET_SECTIONS:
+      return action.sections;
 
     default:
       return state;

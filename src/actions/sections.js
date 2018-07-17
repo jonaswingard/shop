@@ -64,7 +64,7 @@ export const startRemoveSection = ({ id } = {}) => {
     const uid = getState().auth.uid;
 
     return database
-      .ref(`users/${uid}/sections`)
+      .ref(`users/${uid}/sections/${id}`)
       .remove()
       .then(() => {
         dispatch(removeSection({ id }));

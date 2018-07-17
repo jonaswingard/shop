@@ -6,11 +6,8 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import AppRouter, { history } from './routers/app-router';
 import configureStore from './store/configureStore';
-import {
-  addProduct,
-  startAddProduct,
-  startSetProducts
-} from './actions/products';
+import { startSetProducts } from './actions/products';
+import { startSetSections } from './actions/sections';
 import { login, logout } from './actions/auth';
 import { firebase } from './firebase/firebase';
 
@@ -36,7 +33,11 @@ firebase.auth().onAuthStateChanged(user => {
   if (user) {
     store.dispatch(login(user.uid));
     console.log('you are logged in');
-    store.dispatch(startSetProducts()).then(() => {
+
+    Promise.all([
+      store.dispatch(startSetProducts()),
+      store.dispatch(startSetSections())
+    ]).then(() => {
       renderApp();
       if (history.location.pathname === '/') {
         history.push('/shop');
@@ -48,12 +49,3 @@ firebase.auth().onAuthStateChanged(user => {
     history.push('/');
   }
 });
-
-// store.dispatch(addProduct({ name: 'foo' }));
-// store.dispatch(addProduct({ name: 'bar' }));
-
-// const productData = {
-//   name: 'Product Added By Test',
-//   sectionId: 100
-// };
-// store.dispatch(startAddProduct(productData));
