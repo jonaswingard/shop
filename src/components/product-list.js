@@ -15,20 +15,24 @@ export class ProductList extends React.Component {
 
   render() {
     return (
-      <ul>
-        {this.props.products.length === 0 ? (
-          <li>No products</li>
-        ) : (
-          this.props.products.map(product => (
-            <ProductListItem
-              key={product.id}
-              {...product}
-              onSubmit={this.onSubmit}
-              onRemove={this.onRemove}
-            />
-          ))
-        )}
-      </ul>
+      <table>
+        <tbody>
+          {this.props.products.length === 0 ? (
+            <tr>
+              <td>No products</td>
+            </tr>
+          ) : (
+            this.props.products.map(product => (
+              <ProductListItem
+                key={product.id}
+                {...product}
+                onSubmit={this.onSubmit}
+                onRemove={this.onRemove}
+              />
+            ))
+          )}
+        </tbody>
+      </table>
     );
   }
 }

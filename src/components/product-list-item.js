@@ -8,14 +8,20 @@ export class ProductListItem extends React.Component {
       isEditing: false,
       product: {
         id: props.id,
-        name: props.name
+        name: props.name,
+        sectionId: props.sectionId
       }
     };
   }
 
   onEdit = () => {
     this.setState(() => ({
-      isEditing: true
+      isEditing: true,
+      product: {
+        id: this.props.id,
+        name: this.props.name,
+        sectionId: this.props.sectionId
+      }
     }));
   };
 
@@ -38,23 +44,26 @@ export class ProductListItem extends React.Component {
 
   render() {
     return (
-      <li key={this.props.name}>
-        {this.props.name}
-        <span>
-          {this.state.isEditing ? (
-            <ProductForm
-              product={this.state.product}
-              onSubmit={this.onSubmit}
-              onCancel={this.onCancel}
-            />
-          ) : (
-            <span>
-              <button onClick={this.onEdit}>Edit</button>
-              <button onClick={this.onRemove}>Remove</button>
-            </span>
-          )}
-        </span>
-      </li>
+      <tr key={this.props.name}>
+        <td>{this.props.name}</td>
+        <td style={{ padding: '0 50px' }}>{this.props.sectionId}</td>
+        <td>
+          <span>
+            {this.state.isEditing ? (
+              <ProductForm
+                product={this.state.product}
+                onSubmit={this.onSubmit}
+                onCancel={this.onCancel}
+              />
+            ) : (
+              <span>
+                <button onClick={this.onEdit}>Edit</button>
+                <button onClick={this.onRemove}>Remove</button>
+              </span>
+            )}
+          </span>
+        </td>
+      </tr>
     );
   }
 }
