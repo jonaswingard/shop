@@ -4,6 +4,7 @@ import SectionDropdown from '../sections/section-dropdown';
 export default class ProductForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       name: props.product ? props.product.name : '',
       sectionId: props.product ? props.product.sectionId : '',
@@ -46,8 +47,9 @@ export default class ProductForm extends React.Component {
         <form onSubmit={this.onSubmit}>
           <input value={this.state.name} onChange={this.onNameChange} />
           <SectionDropdown
-            foobar={this.state.sectionId}
+            sectionId={this.state.sectionId}
             onChange={this.onSectionChange}
+            sections={this.props.sections}
           />
           <button>Save</button>
           <button type="button" onClick={this.onCancel}>

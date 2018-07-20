@@ -28,6 +28,7 @@ export class ProductList extends React.Component {
                 {...product}
                 onSubmit={this.onSubmit}
                 onRemove={this.onRemove}
+                sections={this.props.sections}
               />
             ))
           )}

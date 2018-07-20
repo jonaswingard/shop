@@ -4,6 +4,7 @@ import ProductForm from './product-form';
 export class ProductListItem extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       isEditing: false,
       product: {
@@ -29,6 +30,7 @@ export class ProductListItem extends React.Component {
     this.setState(() => ({
       isEditing: false
     }));
+
     this.props.onSubmit(product);
   };
 
@@ -42,11 +44,16 @@ export class ProductListItem extends React.Component {
     }));
   };
 
+  getSectionName = () =>
+    this.props.sections
+      .filter(section => section.id === this.props.sectionId)
+      .map(section => (section ? section.name : ''));
+
   render() {
     return (
       <tr key={this.props.name}>
         <td>{this.props.name}</td>
-        <td style={{ padding: '0 50px' }}>{this.props.sectionId}</td>
+        <td style={{ padding: '0 50px' }}>{this.getSectionName()}</td>
         <td>
           <span>
             {this.state.isEditing ? (
@@ -54,6 +61,7 @@ export class ProductListItem extends React.Component {
                 product={this.state.product}
                 onSubmit={this.onSubmit}
                 onCancel={this.onCancel}
+                sections={this.props.sections}
               />
             ) : (
               <span>

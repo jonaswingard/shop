@@ -7,14 +7,15 @@ export default class SectionDropdown extends React.Component {
 
   render() {
     return (
-      <select onChange={this.props.onChange} value={this.props.foobar}>
+      <select onChange={this.props.onChange} value={this.props.sectionId}>
         <option value="" disabled>
           Select section
         </option>
-        <option value="no1">One</option>
-        <option value="no2">Two</option>
-        <option value="no3">Three</option>
-        <option value="no4">Four</option>
+        {this.props.sections.map(section => (
+          <option value={section.id} key={section.id}>
+            {section.name}
+          </option>
+        ))}
       </select>
     );
   }
