@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectProducts } from '../selectors/products';
+import { selectProducts } from '../../selectors/products';
 import ProductListItem from './product-list-item';
-import { startEditProduct, startRemoveProduct } from '../actions/products';
+import { startEditProduct, startRemoveProduct } from '../../actions/products';
 
 export class ProductList extends React.Component {
   onSubmit = product => {

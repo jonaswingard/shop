@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ProductList from './product-list';
-import ProductForm from './product-form';
+import ProductList from '../components/products/product-list';
+import ProductForm from '../components/products/product-form';
 import { startAddProduct } from '../actions/products';
 
 export class ProductPage extends React.Component {

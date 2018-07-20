@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectSections } from '../selectors/sections';
+import { selectSections } from '../../selectors/sections';
 import SectionListItem from './section-list-item';
-import { startEditSection, startRemoveSection } from '../actions/sections';
+import { startEditSection, startRemoveSection } from '../../actions/sections';
 
 export class SectionList extends React.Component {
   onSubmit = section => {

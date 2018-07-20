@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionDropdown from './section-dropdown';
+import SectionDropdown from '../sections/section-dropdown';
 
 export default class ProductForm extends React.Component {
   constructor(props) {

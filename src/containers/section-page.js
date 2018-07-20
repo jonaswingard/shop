@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SectionForm from './section-form';
-import SectionList from './section-list';
+import SectionForm from '../components/sections/section-form';
+import SectionList from '../components/sections/section-list';
 import { startAddSection } from '../actions/sections';
 
 export class SectionPage extends React.Component {

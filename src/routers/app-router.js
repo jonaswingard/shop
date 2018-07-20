@@ -6,8 +6,8 @@ import PublicRoute from './public-route';
 import PrivateRoute from './private-route';
 import StartPage from '../components/start-page';
 import ShoppingListPage from '../components/shopping-list-page';
-import ProductPage from '../components/product-page';
-import SectionPage from '../components/section-page';
+import ProductPage from '../containers/product-page';
+import SectionPage from '../containers/section-page';
 import NotFoundPage from '../components/not-found-page';
 
 export const history = createHistory();
