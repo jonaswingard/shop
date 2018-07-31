@@ -5,7 +5,7 @@ import createHistory from 'history/createBrowserHistory';
 import PublicRoute from './public-route';
 import PrivateRoute from './private-route';
 import StartPage from '../containers/start-page';
-import ShoppingListPage from '../containers/shopping-list-page';
+import ShopPage from '../containers/shop-page';
 import ProductPage from '../containers/product-page';
 import SectionPage from '../containers/section-page';
 import NotFoundPage from '../components/not-found-page';
@@ -17,7 +17,7 @@ const AppRouter = () => (
     <div className="container">
       <Switch>
         <PublicRoute path="/" component={StartPage} exact={true} />
-        <PrivateRoute path="/shop" component={ShoppingListPage} />
+        <PrivateRoute path="/shop" component={ShopPage} />
         <PrivateRoute path="/products" component={ProductPage} />
         <PrivateRoute path="/sections" component={SectionPage} />
         <Route component={NotFoundPage} />

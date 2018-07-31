@@ -23,6 +23,13 @@ export class ProductPage extends React.Component {
     this.props.startRemoveProduct({ id: product.id });
   };
 
+  onToggle = (product, inShoppingList) => {
+    this.props.startEditProduct(product.id, {
+      ...product,
+      inShoppingList
+    });
+  };
+
   render() {
     return (
       <div>
@@ -31,6 +38,7 @@ export class ProductPage extends React.Component {
           products={this.props.products}
           sections={this.props.sections}
           onSubmit={this.onEditSubmit}
+          onToggle={this.onToggle}
           onRemove={this.onRemove}
         />
         <ProductForm

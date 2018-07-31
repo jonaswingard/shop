@@ -17,6 +17,7 @@ export default class ProductList extends React.Component {
                 {...product}
                 onSubmit={this.props.onSubmit}
                 onRemove={this.props.onRemove}
+                onToggle={this.props.onToggle}
                 sections={this.props.sections}
               />
             ))

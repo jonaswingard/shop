@@ -3,7 +3,7 @@ export const selectSections = sections =>
 
 export const selectSectionsDetailed = (sections, products) =>
   selectSections(sections).map(section => ({
-    name: section.name,
+    ...section,
     products: products
       .filter(product => section.id === product.sectionId)
       .sort((a, b) => a.name - b.name)

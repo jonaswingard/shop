@@ -10,7 +10,8 @@ export class ProductListItem extends React.Component {
       product: {
         id: props.id,
         name: props.name,
-        sectionId: props.sectionId
+        sectionId: props.sectionId,
+        inShoppingList: props.inShoppingList
       }
     };
   }
@@ -34,6 +35,10 @@ export class ProductListItem extends React.Component {
     this.props.onSubmit(product);
   };
 
+  onToggle = e => {
+    this.props.onToggle(this.state.product, e.target.checked);
+  };
+
   onRemove = () => {
     this.props.onRemove(this.state.product);
   };
@@ -52,6 +57,13 @@ export class ProductListItem extends React.Component {
   render() {
     return (
       <tr key={this.props.name}>
+        <td>
+          <input
+            type="checkbox"
+            onChange={this.onToggle}
+            checked={this.props.inShoppingList}
+          />
+        </td>
         <td>{this.props.name}</td>
         <td style={{ padding: '0 50px' }}>{this.getSectionName()}</td>
         <td>

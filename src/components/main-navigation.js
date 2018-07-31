@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const MainNavigation = () => (
-  <nav>
+  <nav style={{ display: 'flex', justifyContent: 'space-around' }}>
     <NavLink to="/" activeClassName="is-active" exact={true}>
       Start
     </NavLink>
