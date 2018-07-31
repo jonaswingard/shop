@@ -16,7 +16,6 @@ export class ShopPage extends React.Component {
     return (
       <div>
         <h2>Shopping List Page</h2>
-        <h3>Products In List</h3>
         <ShopList
           sections={this.props.sectionsDetailed}
           onToggle={this.onToggle}

@@ -6,5 +6,13 @@ export const selectSectionsDetailed = (sections, products) =>
     ...section,
     products: products
       .filter(product => section.id === product.sectionId)
-      .sort((a, b) => a.name - b.name)
+      .sort((a, b) => {
+        if (a.inCart === b.inCart) {
+          return a.name.localeCompare(b.name);
+        } else if (a.inCart) {
+          return 1;
+        } else if (b.inCart) return -1;
+
+        return a.name.localeCompare(b.name);
+      })
   }));

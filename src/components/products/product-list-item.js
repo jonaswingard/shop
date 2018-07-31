@@ -40,7 +40,7 @@ export class ProductListItem extends React.Component {
   };
 
   onRemove = () => {
-    this.props.onRemove(this.state.product);
+    confirm('Are you sure?') && this.props.onRemove(this.state.product);
   };
 
   onCancel = () => {
