@@ -72,6 +72,20 @@ export const startRemoveSection = ({ id } = {}) => {
   };
 };
 
+export const startSortSections = sections => {
+  return (dispatch, getState) => {
+    const updates = {};
+    sections.forEach(section => {
+      updates[`${section.id}/sortId`] = section.sortId;
+    });
+
+    dispatch(setSections(sections));
+
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/sections/`).update(updates);
+  };
+};
+
 export const startSetSections = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;

@@ -5,9 +5,11 @@ import SectionList from '../components/sections/section-list';
 import {
   startAddSection,
   startEditSection,
-  startRemoveSection
+  startRemoveSection,
+  startSortSections
 } from '../actions/sections';
 import { selectSections } from '../selectors/sections';
+import { arrayMove } from 'react-sortable-hoc';
 
 export class SectionPage extends React.Component {
   onAddSubmit = section => {
@@ -22,6 +24,16 @@ export class SectionPage extends React.Component {
     this.props.startRemoveSection({ id: section.id });
   };
 
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    const sections = arrayMove(this.props.sections, oldIndex, newIndex);
+    this.props.startSortSections(
+      sections.map((section, index) => ({
+        ...section,
+        sortId: index
+      }))
+    );
+  };
+
   render() {
     return (
       <div>
@@ -30,6 +42,7 @@ export class SectionPage extends React.Component {
           sections={this.props.sections}
           onSubmit={this.onEditSubmit}
           onRemove={this.onRemove}
+          onSortEnd={this.onSortEnd}
         />
         <SectionForm onSubmit={this.onAddSubmit} />
       </div>
@@ -44,7 +57,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   startAddSection: section => dispatch(startAddSection(section)),
   startEditSection: (id, section) => dispatch(startEditSection(id, section)),
-  startRemoveSection: data => dispatch(startRemoveSection(data))
+  startRemoveSection: data => dispatch(startRemoveSection(data)),
+  startSortSections: sections => dispatch(startSortSections(sections))
 });
 
 export default connect(

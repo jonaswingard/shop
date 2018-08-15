@@ -1,5 +1,6 @@
 import React from 'react';
 import SectionForm from './section-form';
+import DragHandle from '../sort-handle';
 
 export class SectionListItem extends React.Component {
   constructor(props) {
@@ -38,7 +39,9 @@ export class SectionListItem extends React.Component {
 
   render() {
     return (
-      <li key={this.props.name}>
+      <li>
+        <DragHandle />
+        &nbsp;
         {this.props.name}
         <span>
           {this.state.isEditing ? (

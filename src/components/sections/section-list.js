@@ -1,23 +1,44 @@
 import React from 'react';
 import SectionListItem from './section-list-item';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 export default class SectionList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sections: props.sections
+    };
+  }
+
   render() {
-    return (
-      <ul>
-        {this.props.sections.length === 0 ? (
-          <li>No sections</li>
-        ) : (
-          this.props.sections.map(section => (
-            <SectionListItem
-              key={section.id}
-              {...section}
-              onSubmit={this.props.onSubmit}
-              onRemove={this.props.onRemove}
+    const SortableItem = SortableElement(({ section }) => (
+      <SectionListItem
+        {...section}
+        onSubmit={this.props.onSubmit}
+        onRemove={this.props.onRemove}
+      />
+    ));
+
+    const SortableList = SortableContainer(({ items }) => {
+      return (
+        <ul>
+          {items.map((section, index) => (
+            <SortableItem
+              key={`item-${index}`}
+              index={index}
+              section={section}
             />
-          ))
-        )}
-      </ul>
+          ))}
+        </ul>
+      );
+    });
+
+    return (
+      <SortableList
+        items={this.props.sections}
+        onSortEnd={this.props.onSortEnd}
+        useDragHandle={true}
+      />
     );
   }
 }
